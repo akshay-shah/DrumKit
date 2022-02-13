@@ -3,10 +3,15 @@ var items = document.querySelectorAll(".drum");
 
 for (let i = 0; i < length; i++) {
   items[i].addEventListener("click", function () {
-    items[i].style.color = "white";
     onButtonPress(items[i].textContent);
+    buttonAnimation(items[i].textContent);
   });
 }
+
+document.addEventListener("keydown", function (event) {
+  onButtonPress(event.key);
+  buttonAnimation(event.key);
+});
 
 function onButtonPress(letter) {
   switch (letter) {
@@ -47,24 +52,12 @@ function onButtonPress(letter) {
   }
 }
 
-document.addEventListener("keydown", function (event) {
-  console.log(event.key);
-  onButtonPress(event.key);
-});
-
-class HouseKeeper {
-  constructor(name, experience, skills) {
-    this.name = name;
-    this.experience = experience;
-    this.skills = skills;
-  }
+function buttonAnimation(key) {
+  var activeButton = document.querySelector("." + key);
+  activeButton.classList.add("pressed");
+  activeButton.style.color = "white"
+  setTimeout(function () {
+      activeButton.classList.remove("pressed");
+      activeButton.style.color = "#DA0463";
+  }, 500);
 }
-
-var houseKeeper = [];
-houseKeeper.push(new HouseKeeper("Akshay", "7 years", "Java"));
-houseKeeper.push(new HouseKeeper("Rohit", "7 years", "Java"));
-houseKeeper.push(new HouseKeeper("Akash", "7 years", "Java"));
-houseKeeper.push(new HouseKeeper("Anand", "7 years", "Java"));
-houseKeeper.push(new HouseKeeper("Nikhil", "7 years", "Java"));
-
-console.log(houseKeeper);
