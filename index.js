@@ -59,5 +59,5 @@ function buttonAnimation(key) {
   setTimeout(function () {
       activeButton.classList.remove("pressed");
       activeButton.style.color = "#DA0463";
-  }, 500);
+  }, 100);
 }
